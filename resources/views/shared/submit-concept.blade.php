@@ -1,5 +1,5 @@
 @auth
-    <h4> Share your concepts </h4>
+    <h4 class="text-white mb-2 text-xl"> Share your concepts </h4>
     <div class="row">
         <form action="{{ route('concepts.store') }}" method="post">
             @csrf

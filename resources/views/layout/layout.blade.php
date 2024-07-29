@@ -10,14 +10,14 @@
     <link href="https://bootswatch.com/5/sketchy/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     {{-- <link href="{{ mix('css/app.css') }}" rel="stylesheet"> --}}
     @vite('resources/css/app.css')
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body>
+<body class="bg-black">
     @include('layout.nav')
-    <div class="container pt-24">
+    <div class="container pt-24 ">
         {{-- page content goes here --}}
         @yield('content')
     </div>
