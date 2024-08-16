@@ -14,7 +14,9 @@
                  <form action="{{ route('concepts.destroy', $concept->id) }}" method="POST">
                      @csrf
                      @method('delete')
-                     <a href="{{ route('concepts.show', $concept->id) }}">View</a>
+                     @if (!Route::is('concepts.show'))
+                         <a href="{{ route('concepts.show', $concept->id) }}">View</a>
+                     @endif
                      @if (Auth::id() === $concept->user_id)
                          <a href="{{ route('concepts.edit', $concept->id) }}">Edit</a>
                          <button class="btn btn-danger btn-sm ms-2">x</button>
@@ -44,13 +46,10 @@
              </p>
          @endif
          <div class="d-flex justify-content-between">
-             <div>
-                 <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-heart me-1">
-                     </span> {{ $concept->likes }} </a>
-             </div>
+             @include('concepts.shared.like-button')
              <div>
                  <span class="fs-6 fw-light text-muted"> <span class="fas fa-clock"> </span>
-                     {{ $concept->created_at }} </span>
+                     {{ $concept->created_at->diffForHumans() }} </span>
              </div>
          </div>
          @include('shared.comments-box')

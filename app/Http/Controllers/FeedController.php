@@ -5,21 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Concept;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class FeedController extends Controller
 {
-    public function index()
+    /**
+     * Handle the incoming request.
+     */
+    public function __invoke(Request $request)
     {
+        $followersIds = auth()->user()->followings()->pluck('user_id');
 
-        //check if there is a search
-        //if there is, check the search value with our database
-
-        $concepts = Concept::orderBy('created_at', "DESC");
+        $concepts = Concept::whereIn('user_id', $followersIds)->latest();
 
         if (request()->has('search')) {
             //where ... content like %hello%
             $concepts = $concepts->where('content', "like", '%' . request()->get('search', "") . '%');
         }
-
 
         return view('dashboard', [
             'concepts' => $concepts->paginate(5)

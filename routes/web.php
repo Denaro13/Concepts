@@ -3,13 +3,17 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ConceptController;
+use App\Http\Controllers\ConceptLikeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FeedController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, "index"])->name('dashboard');
+
+
 
 //CONCEPTS
 Route::get('/concepts/{id}', [ConceptController::class, "show"])->name('concepts.show');
@@ -41,11 +45,17 @@ Route::post('/login', [AuthController::class, "authenticate"]);
 Route::post('/logout', [AuthController::class, "logout"])->name('logout');
 
 
-Route::resource('users', UserController::class)->only('show', 'edit', 'update')->middleware('auth');
+Route::resource('users', UserController::class)->only('show');
+Route::resource('users', UserController::class)->only('edit', 'update')->middleware('auth');
 Route::get('/profile', [UserController::class, 'profile'])->middleware('auth')->name('profile');
 
 Route::post('users/{user}/follow', [FollowerController::class, 'follow'])->middleware('auth')->name('users.follow');
 Route::post('users/{user}/unfollow', [FollowerController::class, 'unfollow'])->middleware('auth')->name('users.unfollow');
+
+Route::post('concepts/{concept}/like', [ConceptLikeController::class, 'like'])->middleware('auth')->name('concepts.like');
+Route::post('concepts/{concept}/unlike', [ConceptLikeController::class, 'unlike'])->middleware('auth')->name('concepts.unlike');
+
+Route::get('/feed', FeedController::class)->middleware('auth')->name('feed');
 
 Route::get('/terms', function () {
     return view('terms');

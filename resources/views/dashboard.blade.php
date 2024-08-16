@@ -6,7 +6,7 @@
         </div>
         <div class="col-span-4">
             @include('shared.success-message')
-            @include('shared.submit-concept')
+            @include('concepts.shared.submit-concept')
             <hr>
             {{-- @foreach ($concepts as $concept)
                 <div class="mt-3">
@@ -15,10 +15,10 @@
             @endforeach --}}
             @forelse ($concepts as $concept)
                 <div class="mt-3">
-                    @include('shared.concept-card')
+                    @include('concepts.shared.concept-card')
                 </div>
             @empty
-                <p class="mt-3 text-center">No results found</p>
+                <p class="mt-3 text-center text-white ">No Concepts Found</p>
             @endforelse
             <div class="mt-3">
                 {{ $concepts->withQueryString()->links() }}
