@@ -1,4 +1,4 @@
- <nav class="bg-red-400 text-white py-3 fixed top-0 right-0 left-0 z-50" data-bs-theme="dark">
+ <nav class="bg-black text-white py-3 fixed top-0 right-0 left-0 z-50" data-bs-theme="dark">
      <div class="container flex justify-between items-center">
          <a class="navbar-brand fw-light text-3xl" href="/"><span class="fas fa-brain me-1">
              </span>{{ config('app.name') }}</a>

@@ -16,5 +16,5 @@
     </div>
 @endauth
 @guest
-    <h4> Login to Share your concepts </h4>
+    <h4 class="text-white"> Login to Share your concepts </h4>
 @endguest
