@@ -19,8 +19,16 @@
                      </li>
                  @endguest
                  @auth
+                     @if (Auth::user()->is_admin)
+                         <li class="text-2xl">
+                             <a class="{{ Route::is('admin.dashboard') ? 'text-red-700' : 'text-white' }}  "
+                                 href="{{ route('admin.dashboard') }}">Admin Dashboard </a>
+                         </li>
+                     @endif
+
                      <li class="text-2xl">
-                         <a class="nav-link" href="{{ route('profile') }}">{{ Auth::user()->name }} </a>
+                         <a class="{{ Route::is('profile') ? 'text-red-700' : 'text-white' }}  "
+                             href="{{ route('profile') }}">{{ Auth::user()->name }} </a>
                      </li>
                      <li class="text-2xl">
                          <form action="{{ route('logout') }}" method="post">
